@@ -102,7 +102,6 @@ int main () {
 	
 	printf("\nProceso hijo resuelve la operacion: resultado->%d\n\n", res);
 
-
 	//Resultado
 	char resultado[20];
 	sprintf(resultado, "%d", res);
@@ -141,7 +140,6 @@ int main () {
 
 	printf("\nRecibido del proceso hijo: \n");
         fputs(buffer, stdout);
-
 	printf("\n\n");
     }
 
