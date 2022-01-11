@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Este script recolecta información de estado del sistema.
-# Su ejecución periódica forma muestras estadísticas.
+# Su ejecución periódica genera muestras estadísticas.
 #
 ## DATOS IMPORTANTES A ESTABLECER
 #
@@ -32,25 +32,21 @@ HORA=`date`
 echo $VERSION $HORA >> $VERSION_FILE
 echo $HORA >> $TOP_FILE
 /usr/src/desa/util/top -b -n 0 >> $TOP_FILE
- 
 # --------------------------------
 # Procesadores
 LINEAS=`echo $NPROCS + 1 | bc`
 echo $HORA >> $MPSTAT_FILE
 mpstat 1 2 | tail -$LINEAS >> $MPSTAT_FILE
- 
 # --------------------------------
 # Discos
 echo $HORA >> $IOSTAT_FILE
 iostat -xn 1 2 >> $IOSTAT_FILE
 echo $HORA >> $DF_FILE
 df -h >> $DF_FILE
- 
 # --------------------------------
 # Memoria
 echo $HORA >> $VMSTAT_FILE
 vmstat 1 2 | cat -n >> $VMSTAT_FILE
- 
 # --------------------------------
 # Red
 echo $HORA >> $NETSTAT_I_FILE
@@ -65,7 +61,6 @@ done
  
 echo $HORA >> $NETSTAT_N_SSH_FILE 
 netstat -n -P tcp | egrep 22 >> $NETSTAT_N_SSH_FILE
-
 # --------------------------------
 # Procesos
 echo $HORA >> $PRSTAT_FILE
@@ -73,12 +68,10 @@ prstat -a -n 500 1 1 | sed -e '/^$/d' >> $PRSTAT_FILE
  
 echo $HORA >> $PRSTAT_M_FILE
 prstat -m -n 40 1 1 | sed -e '/^$/d' >> $PRSTAT_M_FILE
- 
 # --------------------------------
 # Usuarios
 echo $HORA >> $USERS_FILE
 w >> $USERS_FILE
- 
 # --------------------------------
 
 sleep 300
