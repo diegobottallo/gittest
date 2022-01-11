@@ -9,7 +9,7 @@
 LOG_PATH=/opt/ENS
 #
 # Cantidad de procesadores de sistema
-NPROCS=128
+NPROCS=64
 #
 # --------------------------------
 VERSION=2012.1
